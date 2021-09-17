@@ -1,4 +1,4 @@
-# Exam AZ-5000
+# Exam AZ-500
 
 - [Manage Identity and Access](#Manage-Identity-and-Access)
 - [Implement Platform Protection](#Implement-Platform-Protection)
@@ -13,7 +13,62 @@
 
 1. Manage Azure AD groups
 
+    * A group is a collection of users. Types of groups include:
+        * Security Group
+        * Office 365 Group
+
+    * Membership types for security groups include:
+        * **Assigned:** The administrator adds or remove members.
+        * **Dynamic User:** Membership determined based on attribute values. Queries determine which attributes are used to determine group membership.
+        * Dynamic Device (security groups only)
+
+    * Security groups can be nested. However, there are some restrictions on nested groups. You cannot:
+        * Add groups to groups synced with on-premises Active Directory.
+        * Add security groups to Office 365 groups.
+        * Add Office 365 groups to other Office 365 groups or to security groups.
+        * Assign apps to nested groups.
+        * Apply licenses to nested groups.
+
+    * Groups can be managed via:
+        * Azure Portal
+        * Azure PowerShell
+        * Azure CLI
+
+    * To create a group in PowerShell:
+        ```PowerShell
+        New-AzADGroup -DisplayName "Sales" -MailNickname "Sales"
+        ```
+
+    * To create a group using the CLI:
+        ```bash
+        az ad group create --display-name "Marketing" --mail-nickname "Marketing"
+        ```
+
 1. Manage Azure AD users
+
+    * A user is an account required to access Azure resources. This includes Software as a Service (SaaS) applications such as Office 365, as well as custom applications written by your in-house development team.
+
+    * A user can be one of:
+        * Cloud based user account (Azure Active Directory)
+        * A synchronised on-premises directory account
+        * A guest user
+
+    * Users can be managed via:
+        * Azure Portal
+        * Azure PowerShell
+        * Azure CLI
+
+    * To create a user in PowerShell:
+        ```PowerShell
+        $SecureStringPassword = ConvertTo-SecureString -String "Password.1" -AsPlainText -Force
+        New-AzADUser -DisplayName "Test User2" -UserPrincipalName "testuser2@sjohnsontexansfans.onmicrosoft.com" -Password $SecureStringPassword -MailNickname testuser2
+        ```
+
+    * To create a user using the CLI:
+        ```bash
+        az ad user create --display-name "Test User3" --password "Password.1" --user-principal-name testuser3@sjohnsonexansfans.onmicrosoft.com
+        ```
+
 
 1. Manage external identities by using Azure AD
 
